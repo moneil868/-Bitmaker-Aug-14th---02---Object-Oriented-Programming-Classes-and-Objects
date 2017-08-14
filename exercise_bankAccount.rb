@@ -9,18 +9,18 @@ class BankAccount
 
 # Your class should have an instance method called deposit that accepts one amount argument and adds that amount to the total balance
   def deposit(amount)
-    total_balance = @balance + amount
+    @balance = @balance + amount
   end
 
 # There should be a withdraw instance method that accepts one amount argument and subtracts it from the total balance
   def withdraw(amount)
-    total_balance = @balance - amount
+    @balance = @balance - amount
   end
 
   # Finally, there should be a gain_interest instance method that increases the total balance according to the interest rate.
-  def gain_interest(total_balance)
-    interest_amount = (total_balance * @interest_rate) / 100
-    total_balance = interest_amount + total_balance
+  def gain_interest
+    interest_amount = (@balance * @interest_rate) / 100
+    @balance = interest_amount + @balance
   end
 
   def give_balance
@@ -35,11 +35,13 @@ end
 
 
 # Test out your method by calling it on an instance of your class
-first_call = BankAccount.new(100, 10)
+first_call = BankAccount.new(1000, 10)
 deposit_amount = 100
 withdraw_amount = 60
 
 
-puts "Your account currently has $#{ first_call.give_balance }, after depositing $#{deposit_amount} you will have $#{ first_call.deposit(deposit_amount) }!"
 puts "Your account currently has $#{ first_call.give_balance }, after widthdrawing $#{withdraw_amount} you will have $#{ first_call.withdraw(withdraw_amount) }."
-puts "Your account had $#{ first_call.give_balance }, at a rate of #{ first_call.give_interest_rate }% your new balance is $#{first_call.gain_interest(100)}."
+
+puts "Your current balance is #{first_call.give_balance}, if you deposit #{deposit_amount}, you will have #{first_call.deposit(deposit_amount)}"
+
+puts "Your account had $#{ first_call.give_balance }, at a rate of #{ first_call.give_interest_rate }% your new balance is $#{first_call.gain_interest}."
